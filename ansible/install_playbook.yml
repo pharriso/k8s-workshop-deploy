@@ -1,0 +1,54 @@
+---
+
+- name: deploy k8s workshop
+  hosts: localhost
+  gather_facts: false
+  vars:
+    workshop_name: k8s-basic
+    workshop_labguide_repo: https://github.com/pprosser-redhat/k8s-basics.git
+    helm_chart: showroom-single-pod
+    workshop_namespace: k8s-{{ guid }}-user
+    workshop_domain: apps.cluster-{{ guid }}.dynamic.redhatworkshops.io
+  tasks:
+  - name: login to openshift
+    ansible.builtin.command:
+      cmd: > 
+           oc login {{ lookup('ansible.builtin.env', 'OCP_HOST') }} 
+           -u {{ lookup('ansible.builtin.env', 'OCP_USERNAME') }}
+           -p {{ lookup('ansible.builtin.env', 'OCP_PASSWORD') }} 
+           --insecure-skip-tls-verify
+
+  - name: clone install repo
+    ansible.builtin.git:
+      repo: https://github.com/rhpds/showroom-deployer.git
+      dest: /showroom-deployer
+
+  - name: create namespace per user
+    kubernetes.core.k8s:
+      name: "{{ workshop_namespace }}{{ item }}"
+      api_version: v1
+      kind: Namespace
+      state: present
+    with_sequence: start=1 end={{ num_users }}
+
+  - name: template out configmaps
+    ansible.builtin.template:
+      src: /ansible/user-data.yaml.j2
+      dest: /tmp/user-data-user{{ item }}.yaml
+    with_sequence: start=1 end={{ num_users }}
+
+  - name: deploy from helm template
+    ansible.builtin.shell:
+      chdir: /showroom-deployer/charts
+      cmd: >
+        helm template {{ workshop_name }} ./{{ helm_chart }}
+        --set deployer.domain={{ workshop_domain }}
+        --set guid={{ guid }} 
+        --set content.repoUrl={{ workshop_labguide_repo }}
+        --set-file content.user_data=/tmp/user-data-user{{ item }}.yaml
+        --set-string terminal.setup="true"
+        --set terminal.display_name="K8s Basics"
+        --set-string second_terminal_tab.setup="false"
+        --set-string wetty.setup="false"
+        --namespace={{ workshop_namespace }}{{ item }} | oc apply -f -
+    with_sequence: start=1 end={{ num_users }}
