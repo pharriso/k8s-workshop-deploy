@@ -16,5 +16,5 @@ podman run --rm -it --name showroom \
   quay.io/pharriso/k8s-workshop-install:1.0 \
   bash -c "git clone https://github.com/pharriso/k8s-workshop-deploy.git && \
            ansible-playbook /k8s-workshop-deploy/ansible/install_playbook.yml \
-	  -e num_users=$NUM_USERS -e guid=$GUID \
-          -e workshop_password=$WORKSHOP_PASSWORD"
+           -e num_users=$NUM_USERS -e guid=$GUID \
+           -e workshop_password=$WORKSHOP_PASSWORD"
