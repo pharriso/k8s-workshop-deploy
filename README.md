@@ -6,7 +6,7 @@ This repo can be used to automate deployment of multiple student environments fo
 
 Laptop with podman installed and running.
 
-# Deploying the workshop
+## Deploying the workshop
 
 Clone this repo onto your laptop:
 
@@ -31,7 +31,7 @@ Run the script:
 ./deploy_workshop.sh
 ```
 
-# Rebuilding the container
+## Rebuilding the container
 
 Edit Containerfile as needed. Rebuild:
 
