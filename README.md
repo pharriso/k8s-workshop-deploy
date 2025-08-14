@@ -33,8 +33,9 @@ Run the script:
 
 ## Rebuilding the container
 
-Edit Containerfile as needed. Rebuild:
+Edit Containerfile as needed. Rebuild has dependency on image in registry.redhat.io, so log into that registry first:
 
 ```
+podman login registry.redhat.io
 podman build -t quay.io/pharriso/k8s-workshop-install:<tag> -f Containerfile
 ```

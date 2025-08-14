@@ -1,10 +1,11 @@
 # variables for the workshop
-NUM_USERS=3
-GUID=abcde
+NUM_USERS=20
+GUID=
 WORKSHOP_PASSWORD=
 # Variables to authenticate to the cluster
 # Use admin credentials for the cluster
 OCP_PASSWORD=
+# You shouldn't need to change these variables unless something changes in the RHPDS workshop
 OCP_HOST=https://api.cluster-$GUID.dynamic.redhatworkshops.io:6443
 OCP_USERNAME=admin
 
