@@ -33,7 +33,7 @@
 
   - name: template out configmaps
     ansible.builtin.template:
-      src: /ansible/user-data.yaml.j2
+      src: /k8s-workshop-deploy/ansible/user-data.yaml.j2
       dest: /tmp/user-data-user{{ item }}.yaml
     with_sequence: start=1 end={{ num_users }}
 
