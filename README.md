@@ -2,7 +2,7 @@
 
 This repo can be used to automate deployment of multiple student environments for the k8s basics workshop.
 
-# Prerequisities
+## Prerequisities
 
 Laptop with podman installed and running.
 
