@@ -46,7 +46,7 @@
         --set guid={{ guid }} 
         --set content.repoUrl={{ workshop_labguide_repo }}
         --set-file content.user_data=/tmp/user-data-user{{ item }}.yaml
-        --set-string terminal.setup="false"
+        --set-string terminal.setup="true"
         --set-string stacked_terminals.setup="true"
         --set terminal.display_name="K8s Basics"
         --set stacked_terminals.display_name="K8s Basics"
