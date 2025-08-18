@@ -46,9 +46,12 @@
         --set guid={{ guid }} 
         --set content.repoUrl={{ workshop_labguide_repo }}
         --set-file content.user_data=/tmp/user-data-user{{ item }}.yaml
-        --set-string terminal.setup="true"
+        --set-string terminal.setup="false"
         --set-string stacked_terminals.setup="true"
         --set terminal.display_name="K8s Basics"
+        --set stacked_terminals.display_name="K8s Basics"
+        --set stacked_terminals.top="terminal"
+        --set stacked_terminals.bottom="terminal"
         --set-string second_terminal_tab.setup="false"
         --set-string wetty.setup="false"
         --namespace={{ workshop_namespace }}{{ item }} | oc apply -f -
