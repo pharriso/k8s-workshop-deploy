@@ -1,7 +1,7 @@
 # variables for the workshop
 NUM_USERS=20
 GUID=
-WORKSHOP_PASSWORD=
+STUDENT_PASSWORD=
 # Variables to authenticate to the cluster
 # Use admin credentials for the cluster
 OCP_PASSWORD=
@@ -17,4 +17,4 @@ podman run --rm -it --name showroom \
   bash -c "git clone https://github.com/pharriso/k8s-workshop-deploy.git && \
            ansible-playbook /k8s-workshop-deploy/ansible/install_playbook.yml \
            -e num_users=$NUM_USERS -e guid=$GUID \
-           -e workshop_password=$WORKSHOP_PASSWORD"
+           -e workshop_password=$STUDENT_PASSWORD"

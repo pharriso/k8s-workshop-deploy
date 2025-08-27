@@ -20,7 +20,7 @@ Edit deploy.sh script variables:
 |---------------------------|-----------------------|----------------------------------------------------------------------------------|
 | NUM_USERS                 |                       | Number of students for the workshop                                              |
 | GUID                      |                       | Workshop GUID                                                                    |
-| WORKSHOP_PASSWORD         |                       | Student password for the workshop - gets rendered in lab guide                   |
+| STUDENT_PASSWORD          |                       | Student password for the workshop - gets rendered in lab guide                   |
 | OCP_PASSWORD              |                       | admin password for the OCP cluster so we can deploy the lab                      |
 | OCP_USERNAME              | admin                 | admin username for the OCP cluster so we can deploy the lab                      |
 | OCP_HOST                  | https://api.cluster-$GUID.dynamic.redhatworkshops.io:6443 | API for OCP cluster so we can deploy the lab |
