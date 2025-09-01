@@ -44,7 +44,7 @@
         helm template {{ workshop_name }} ./{{ helm_chart }}
         --set deployer.domain={{ workshop_domain }}
         --set guid={{ guid }} 
-        --set content.repoRef={{ git_branch | default('main') }}
+        --set content.repoRef=pat-updates
         --set content.repoUrl={{ workshop_labguide_repo }}
         --set-file content.user_data=/tmp/user-data-user{{ item }}.yaml
         --set-string terminal.setup="true"
