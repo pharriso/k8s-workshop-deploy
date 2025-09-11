@@ -1,5 +1,5 @@
 # variables for the workshop
-NUM_USERS=20
+NUM_USERS=2
 GUID=
 STUDENT_PASSWORD=
 # Variables to authenticate to the cluster
@@ -8,6 +8,8 @@ OCP_PASSWORD=
 # You shouldn't need to change these variables unless something changes in the RHPDS workshop
 OCP_HOST=https://api.cluster-$GUID.dynamic.redhatworkshops.io:6443
 OCP_USERNAME=admin
+# git branch to deploy from
+WORKSHOP_GIT_BRANCH=main
 
 podman run --rm -it --name showroom \
   --env OCP_PASSWORD=$OCP_PASSWORD \
@@ -17,4 +19,4 @@ podman run --rm -it --name showroom \
   bash -c "git clone https://github.com/pharriso/k8s-workshop-deploy.git && \
            ansible-playbook /k8s-workshop-deploy/ansible/install_playbook.yml \
            -e num_users=$NUM_USERS -e guid=$GUID \
-           -e workshop_password=$STUDENT_PASSWORD"
+	   -e workshop_password=$STUDENT_PASSWORD -e git_branch=$WORKSHOP_GIT_BRANCH"
